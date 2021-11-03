@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' =>  array_key_exists('LOG_CHANNEL',$_SERVER) ? $_SERVER['LOG_CHANNEL'] :  env('LOG_CHANNEL', 'stack'),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,6 +35,20 @@ return [
     */
 
     'channels' => [
+        'cloudwatch' => [
+            'name' => array_key_exists('CLOUDWATCH_LOG_NAME',$_SERVER) ? $_SERVER['CLOUDWATCH_LOG_NAME'] : env('CLOUDWATCH_LOG_NAME', ''),
+            'region' => array_key_exists('CLOUDWATCH_LOG_REGION',$_SERVER) ? $_SERVER['CLOUDWATCH_LOG_REGION'] : env('CLOUDWATCH_LOG_REGION', ''),
+            'credentials' => [
+                'key' => array_key_exists('AWS_ACCESS_KEY_ID',$_SERVER) ? $_SERVER['AWS_ACCESS_KEY_ID'] : env('AWS_ACCESS_KEY_ID', ''),
+                'secret' => array_key_exists('AWS_SECRET_ACCESS_KEY',$_SERVER) ? $_SERVER['AWS_SECRET_ACCESS_KEY'] : env('AWS_SECRET_ACCESS_KEY', '')
+            ],
+            'stream_name' => env('CLOUDWATCH_LOG_STREAM_NAME', 'laravel_app'),
+            'retention' => env('CLOUDWATCH_LOG_RETENTION_DAYS', 14),
+            'group_name' => env('CLOUDWATCH_LOG_GROUP_NAME', 'laravel_app'),
+            'version' => env('CLOUDWATCH_LOG_VERSION', 'latest'),
+            'formatter' => \Monolog\Formatter\JsonFormatter::class,
+            'disabled' => env('DISABLE_CLOUDWATCH_LOG', false),
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
