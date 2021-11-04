@@ -35,7 +35,7 @@ return [
     */
 
     'channels' => [
-        'cloudwatch' => [
+      /*  'cloudwatch' => [
             'name' => array_key_exists('CLOUDWATCH_LOG_NAME',$_SERVER) ? $_SERVER['CLOUDWATCH_LOG_NAME'] : env('CLOUDWATCH_LOG_NAME', ''),
             'region' => array_key_exists('CLOUDWATCH_LOG_REGION',$_SERVER) ? $_SERVER['CLOUDWATCH_LOG_REGION'] : env('CLOUDWATCH_LOG_REGION', ''),
             'credentials' => [
@@ -48,7 +48,7 @@ return [
             'version' => array_key_exists('CLOUDWATCH_LOG_VERSION',$_SERVER) ? $_SERVER['CLOUDWATCH_LOG_VERSION'] : env('CLOUDWATCH_LOG_VERSION', 'latest'),
             'formatter' => \Monolog\Formatter\JsonFormatter::class,
             'disabled' => array_key_exists('DISABLE_CLOUDWATCH_LOG',$_SERVER) ? $_SERVER['DISABLE_CLOUDWATCH_LOG'] : env('DISABLE_CLOUDWATCH_LOG', false),
-        ],
+        ],*/
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
