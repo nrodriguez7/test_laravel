@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    \Log::info('user logged in', ['id' => 123, 'name' => 'Naren']);
+    \Log::info('Hola Nuevo', ['id' => 123, 'name' => 'Naren']);
+
 
     return view('welcome');
 });
