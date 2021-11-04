@@ -175,10 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        /*
-         * Third Party Service Providers...
-         */
-        Pagevamp\Providers\CloudWatchServiceProvider::class
 
     ],
 
