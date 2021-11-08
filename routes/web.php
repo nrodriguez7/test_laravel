@@ -18,3 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/hola', function () {
+    \Log::info('TEST LARAVEL 3', ['id' => 123, 'name' => 'Naren']);
+   echo "hola"; die();
+});
