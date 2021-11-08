@@ -16,6 +16,7 @@ class CloudWatchLoggerFactory
      */
     public function __invoke(array $config)
     {
+
         $sdkParams = $config["sdk"];
         $tags = $config["tags"] ?? [ ];
         $name = $config["name"] ?? 'cloudwatch';
