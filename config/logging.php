@@ -49,7 +49,20 @@ return [
             'retention' => array_key_exists('CLOUDWATCH_LOG_RETENTION_DAYS',$_SERVER) ? $_SERVER['CLOUDWATCH_LOG_RETENTION_DAYS'] : env('CLOUDWATCH_LOG_RETENTION_DAYS',7),
             'level' => array_key_exists('CLOUDWATCH_LOG_LEVEL',$_SERVER) ? $_SERVER['CLOUDWATCH_LOG_LEVEL'] : env('CLOUDWATCH_LOG_LEVEL','info')
         ],
-
+        'logglycustom' => [
+            'driver' => 'custom',
+            'via' => \App\Logging\LogglyLoggerFactory::class,
+            'key' => array_key_exists('LOGGLY_KEY',$_SERVER) ? $_SERVER['LOGGLY_KEY'] : env('LOGGLY_KEY')
+        ],
+        'loggly' => [
+            'driver' => 'monolog',
+            'handler' => Monolog\Handler\LogglyHandler::class,
+            'formatter' => Monolog\Formatter\JsonFormatter::class,
+            'with' => [
+                'token' =>  array_key_exists('LOGGLY_KEY',$_SERVER) ? $_SERVER['LOGGLY_KEY'] : env('LOGGLY_KEY'),
+                'tag' => str_replace(' ', '_', env('APP_NAME') . '_' . env('APP_ENV')),
+            ]
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
